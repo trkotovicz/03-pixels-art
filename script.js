@@ -116,8 +116,23 @@ function generateBoard() {
 // valor maior que 50, considerar 50 como padrão
 
 
-
-
 // Requisito 12
-//as cores devem ser geradas automaticamente
-// a preta ainda deve ser a primeira e deve ser carregada no window.onload
+/* Referência de como gerar cores aleatóriamente
+https://wallacemaxters.com.br/blog/2021/02/20/como-gerar-cores-aleatorias-no-javascript
+
+A função Math.random() retorna um número float aleatório de 0 a 1. Ao multiplicar por 255, estamos dizendo que o valor máximo para o valor de qualquer elemento do rgb seja de 0 a 255.
+Se não quiser deixar os valores do RGB como float, basta apenas executar um parseInt.
+*/
+function generateColor() {
+    let r = parseInt(Math.random() * 255);
+    let g = parseInt(Math.random() * 255);
+    let b = parseInt(Math.random() * 255);
+
+    return "rgba(" + r + ", " + g + ", " + b + ")";
+};
+// for para gerer as cores
+for (let index = 0; index < cores.length; index += 1) {
+    cores[index].style.backgroundColor = generateColor();
+};
+// a preta ainda tem que ser a primeira cor
+cores[0].style.backgroundColor = "black";
