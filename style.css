@@ -1,24 +1,29 @@
 .body {
-    text-align: center;
+  text-align: center;
 }
 
 .color {
-    border: 1px black solid;
-    width: 40px;
-    height: 40px;
-    display: inline-block;
+  border: 1px black solid;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
 }
 
 .pixel {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border: 1px black solid;
-    display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border: 1px black solid;
+  display: inline-block;
 }
 
 .buttons-container {
-    display: inline-block;
-    padding: 8px;
-    width: 100%;
+  display: inline-block;
+  padding: 8px;
+  width: 100%;
+}
+
+#board-size {
+  text-align: center;
+  margin: 8px;
 }
