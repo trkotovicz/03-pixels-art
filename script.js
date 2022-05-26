@@ -1,3 +1,5 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable radix */
 // Requisito 6
 function inicialBlack() {
   const black = document.getElementById('black');
@@ -9,29 +11,24 @@ window.onload = inicialBlack;
 // Requisito 7
 const cores = document.querySelectorAll('.color');
 
-// remove a classe "selected" já existente e adiciona ela no novo elemento (o que foi clicado).
 function selectedColor(event) {
   for (let index = 0; index < cores.length; index += 1) {
     cores[index].classList.remove('selected');
   }
   event.target.classList.add('selected');
 }
-
-// o for percorre as cores e add o escutador de click em cada uma delas. Também chama a função "selectedColor" no escutador.
 for (let index = 0; index < cores.length; index += 1) {
   cores[index].addEventListener('click', selectedColor);
 }
 
 // Requisito 8
-// mesma lógica do requisito 7, declaro as variáveis buscando os elementos no html (uma com a classe da cor ".selected" e outra com os pixels que irão ser pintados. Na sequência um for para add escutador em cada pixel para quando forem clicados.
 const pixel = document.querySelectorAll('.pixel');
 
 function paintPixel() {
   function pixelColor(event) {
-    const selectColor = document.querySelector('.selected'); // add na função pois fora ela seleciona como padrão a cor preta qnd a página é carregada e não carrega mais
+    const selectColor = document.querySelector('.selected');
     event.target.style.backgroundColor = selectColor.style.backgroundColor;
   }
-
   for (let index = 0; index < pixel.length; index += 1) {
     pixel[index].addEventListener('click', pixelColor);
   }
@@ -39,14 +36,12 @@ function paintPixel() {
 paintPixel();
 
 // Requisito 9
-// cria botão com escutador de click, id, texto e add na section entre cores e quadro
 const buttonsContainer = document.querySelector('.buttons-container');
 const clear = document.createElement('button');
 clear.innerText = 'Limpar';
 clear.id = 'clear-board';
 buttonsContainer.appendChild(clear);
 
-// faz pintar todos os pixels de branco quando é clicado
 function clearButton() {
   for (let index = 0; index < pixel.length; index += 1) {
     pixel[index].style.backgroundColor = 'white';
@@ -56,10 +51,6 @@ function clearButton() {
 clear.addEventListener('click', clearButton);
 
 // Requisito 10
-/* Referências dos atributos do input:
-https://www.w3schools.com/tags/att_input_type_number.asp
-https://blog.betrybe.com/html/input-html/ */
-// cria botão "VQV" e input
 const input = document.createElement('input');
 input.id = 'board-size';
 buttonsContainer.appendChild(input);
@@ -71,19 +62,7 @@ const vqv = document.createElement('button');
 vqv.id = 'generate-board';
 vqv.innerText = 'VQV';
 buttonsContainer.appendChild(vqv);
-vqv.addEventListener('click', generateBoard)
-
-// // cria novo pixel-board
-// function newBoard() {
-//  let pixelBoard = document.getElementById("pixel-board");
-
-//     if (input.value < 5) {
-//         for ()         // precisa de um for para criar as novas linhas (div) dos pixels. Mas como esse for vai contar o valor do input para criar as novas divs??
-//             let line = document.createElement("div");
-//             pixelBoard.appendChild(line);
-
-//     }
-// };
+vqv.addEventListener('click', generateBoard);
 
 // função pra remover o board
 function eraseBoard() {
@@ -94,8 +73,6 @@ function eraseBoard() {
   }
 }
 
-// se nenhum valor for colocado no input, ao clicar no botão mostre um ALERT "Board inválido!"
-// quadro tem que permitir tamanho entre 5 e 50
 function generateBoard() {
   if (input.value === '') {
     alert('Board inválido!');
@@ -104,24 +81,11 @@ function generateBoard() {
   } else if (input.value > 50) {
     input.value = 50;
   }
-
-  // eraseBoard(); // chama pra excluir o board atual
-  //               // chama função para construir novo quadro
-  // paintPixel(); // chama a função de pintar pixel para recontar o número de pixels que poderão ser pintados
 }
 
 // Requisito 11
-// caso o valor do input fuja do intervalo 5 a 50
-// valor menor que 5, considerar 5 como padrão
-// valor maior que 50, considerar 50 como padrão
 
 // Requisito 12
-/* Referência de como gerar cores aleatóriamente
-https://wallacemaxters.com.br/blog/2021/02/20/como-gerar-cores-aleatorias-no-javascript
-
-A função Math.random() retorna um número float aleatório de 0 a 1. Ao multiplicar por 255, estamos dizendo que o valor máximo para o valor de qualquer elemento do rgb seja de 0 a 255.
-Se não quiser deixar os valores do RGB como float, basta apenas executar um parseInt.
-*/
 function generateColor() {
   const r = parseInt(Math.random() * 255);
   const g = parseInt(Math.random() * 255);
@@ -129,9 +93,7 @@ function generateColor() {
 
   return `rgba(${r}, ${g}, ${b})`;
 }
-// for para gerer as cores
 for (let index = 0; index < cores.length; index += 1) {
   cores[index].style.backgroundColor = generateColor();
 }
-// a preta ainda tem que ser a primeira cor
 cores[0].style.backgroundColor = 'black';
